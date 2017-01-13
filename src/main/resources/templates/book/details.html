@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head(${book.title})"></head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: searchbar"></div>
+<div th:replace="layout :: flash"></div>
+<div class="book-detail container">
+    <div class="frame row">
+        <div class="col s12 actions"> <h4 th:text = "${book.title}"></h4>
+            <h4 th:text = "${book.author}"></h4>
+            <form th:action="@{|/books/${book.id}/favorite|}" method="post">
+                <button type="submit" th:class="(${book.favorite}? 'un' : '') + 'mark favorite'"></button>
+            </form>
+        </div>
+    </div>
+    <div class="meta row">
+        <div class="col s10 l11 push-l1">
+            <h4 th:text="${book.description}"></h4>
+            <div>
+                <span class="user"></span>
+                <span class="category"><a th:href="@{|/categories/${book.category.id}|}" th:text="${book.category.name}" th:style="|color:${book.category.colorCode}|"></a></span>
+                <div class="actions">
+                    <a th:href="@{|/books/${book.id}/edit|}">Edit</a>
+                    <form th:action="@{|/books/${book.id}/delete|}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l11 offset-l1">
+            <div class="divider"></div>
+        </div>
+        <div class="col s12 l8 offset-l1">
+            <div class="share">
+                <a class="btn right" href="#">Copy</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>

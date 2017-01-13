@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head('explore')"></head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: searchbar"></div>
+<div th:replace="layout :: flash"></div>
+<div class="books container">
+    <div class="row">
+        <div th:each="book : ${books}" class="col s12 l4">
+            <a th:href="@{|/books/${book.id}|}" class="actions" th:text = "${book.title}">
+                <form th:action="@{|/books/${book.id}/favorite|}" method="post">
+                    <button type="submit" th:class="(${book.favorite}? 'un' : '') + 'mark favorite'"></button>
+                </form>
+            </a>
+        </div>
+    </div>
+</div>
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>

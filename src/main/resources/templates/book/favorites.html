@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head('favorites')"></head>
+<body>
+<div th:replace="layout :: nav"></div>
+<div th:replace="layout :: searchbar"></div>
+<div th:replace="layout :: flash"></div>
+<div class="row user-meta">
+    <div class="col s9= l12">
+        <h2 th:text="${username}">Jane Doe</h2>
+        <div class="meta" th:text="|${#lists.size(books)} Favorites|"></div>
+    </div>
+</div>
+<div class="books container">
+    <div class="divider"></div>
+    <div class="row">
+        <div th:each="book : ${books}" class="col s12 l4">
+            <a th:href="@{|/books/${book.id}|}" th:text = "${book.title}">
+                <a href="#" th:class="(${book.favorite}? 'un' : '') + 'mark favorite'"></a>
+            </a>
+        </div>
+    </div>
+</div>
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>
