@@ -23,6 +23,10 @@ public class Book {
     @NotNull
     private String title;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Book(){}
 
     public String getTimeSinceUploaded() {
@@ -99,5 +103,13 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
